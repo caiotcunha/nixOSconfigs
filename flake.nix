@@ -6,8 +6,7 @@
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprland.url = "github:hyprwm/Hyprland";    
+    };    
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs:
@@ -22,7 +21,7 @@
           modules = [
             ./configuration.nix
             home-manager.nixosModules.home-manager
-            inputs.hyprland.nixosModules.default
+            #inputs.hyprland.nixosModules.default
             {
               home-manager = {
                 useUserPackages = true;

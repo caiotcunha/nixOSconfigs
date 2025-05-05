@@ -12,18 +12,20 @@
   home.packages = with pkgs; [
    neofetch
    kitty
-   rofi-wayland
    foot
 
-   #clipboard
+   #Clipboard
    wl-clipboard
    cliphist
 
    #Eww
    jq
    
-   #hyprland ecosystem
+   #Hyprland ecosystem
    hyprpaper
+
+   #Apps
+   firefox
 
   ]; 
 
@@ -64,6 +66,7 @@
         "eww open bar"
         "mako"
         "hyprpaper"
+        "systemctl --user start hyprpolkitagent"
       ]; 
       general = {
         gaps_in = 0;
@@ -112,6 +115,7 @@
     }; 
   };
 
+  #bar
   programs.eww = {
     enable    = true;             
     package   = pkgs.eww;         
@@ -120,6 +124,11 @@
 
   # notification daemon mako
   services.mako = {
+   enable = true;
+  };
+
+  # fuzzel app launcher
+  programs.fuzzel = {
    enable = true;
   };
   

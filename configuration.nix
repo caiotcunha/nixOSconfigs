@@ -41,7 +41,7 @@
   # Configure console keymap
   console.keyMap = "br-abnt2";
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define a user account
   users.users.surtas = {
     isNormalUser = true;
     description = "surtas";
@@ -53,7 +53,8 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-   inputs.hyprland.packages.${pkgs.system}.hyprland
+   #hyprland recomendations
+   hyprpolkitagent
    qt5.qtwayland
    qt6.qtwayland
   ];  
@@ -64,12 +65,15 @@
     command = "Hyprland";
     user = "surtas";
   };
-
+  
+  #pipewire + wireplumber
+  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     audio.enable = true;
     pulse.enable = true;
     alsa.enable = true;
+    wireplumber.enable = true;
   };
   # Hyprland e ecosystem
   programs.hyprland = {
@@ -89,6 +93,11 @@
   xdg.portal.extraPortals = with pkgs; [
    xdg-desktop-portal-gtk
   ];
+
+  #polkitagent
+  #security.polkit = {
+  # enable = true;
+  #};
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
